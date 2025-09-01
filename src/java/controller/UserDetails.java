@@ -61,7 +61,6 @@ public class UserDetails extends HttpServlet {
                     JsonObject linkObj = new JsonObject();
                     linkObj.addProperty("id", String.valueOf(link.getId()));
                     linkObj.addProperty("title", link.getTitle());
-                    linkObj.addProperty("description", link.getDescription());
                     linkObj.addProperty("url", link.getUrl());
 
                     linksArray.add(linkObj);

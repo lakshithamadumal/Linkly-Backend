@@ -27,14 +27,10 @@ public class Link implements Serializable {
     @Column(name = "title", length = 255, nullable = false)
     String title;
 
-    @Column(name = "description", nullable = true)
-    String description;
 
     @Column(name = "url", nullable = false)
     String url;
 
-    @Column(name = "img_url", nullable = true)
-    String img_url;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -59,13 +55,6 @@ public class Link implements Serializable {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     public String getUrl() {
         return url;
@@ -75,13 +64,6 @@ public class Link implements Serializable {
         this.url = url;
     }
 
-    public String getImg_url() {
-        return img_url;
-    }
-
-    public void setImg_url(String img_url) {
-        this.img_url = img_url;
-    }
 
     public User getUser_id() {
         return user_id;
