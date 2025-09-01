@@ -6,6 +6,7 @@ import com.google.gson.JsonObject;
 import hibernate.HibernateUtil;
 import hibernate.User;
 import hibernate.Link;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -22,10 +23,14 @@ import org.hibernate.criterion.Restrictions;
 public class UserDetails extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         Gson gson = new Gson();
-        String email = request.getParameter("email");
+
+        BufferedReader reader = request.getReader();
+        JsonObject requestBody = gson.fromJson(reader, JsonObject.class);
+
+        String email = requestBody.get("email").getAsString();
 
         SessionFactory sf = HibernateUtil.getSessionFactory();
         Session s = sf.openSession();
@@ -59,7 +64,6 @@ public class UserDetails extends HttpServlet {
                     linkObj.addProperty("description", link.getDescription());
                     linkObj.addProperty("url", link.getUrl());
 
-                    
                     linksArray.add(linkObj);
                 }
                 responseObject.add("links", linksArray);
