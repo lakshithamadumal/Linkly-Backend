@@ -43,7 +43,7 @@ public class CreateAccount extends HttpServlet {
         } else if (password.isEmpty()) {
             responseObject.addProperty("message", "Password Required Here");
         } else if (password.length() < 6) {
-            responseObject.addProperty("message", "PPassword must be at least 6 characters!");
+            responseObject.addProperty("message", "Password must be at least 6 characters!");
         } else {
 
             SessionFactory sf = HibernateUtil.getSessionFactory();
